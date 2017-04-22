@@ -18,16 +18,21 @@
         </p>
         <p>
             Added: @Model.DateAdded
-        </p>
-        <small class="author">
-           Reported by: @Model.Author.UserName
-        </small>
+        </p> 
+        <p>
+            Reported By: @Model.Author.UserName
+        </p>               
         <footer class="pull-right">
-            @Html.ActionLink("Edit", "Edit", "Bug", new { @id = Model.Id }, new { @class = "btn btn-success btn-xs" })            
-            @Html.ActionLink("Back", "Index", "Bug", null, new { @class = "btn btn-default btn-xs" })
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Edit", "Edit", "Bug", new { @id = Model.Id }, new { @class = "btn btn-success" })
+                
+                 <a class="btn btn-primary button-margin" href="/Bug/AddComment/@Model.Id"> Add Comment</a>
+            }                        
+            @Html.ActionLink("Back", "Index", "Bug", null, new { @class = "btn btn-default btn" })
         </footer>
     </article>
 </div>
-<hr />
+
 
 

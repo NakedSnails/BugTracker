@@ -208,6 +208,7 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Bug.cs" />
     <Compile Include="Models\BugsTrackerDbContext.cs" />
+    <Compile Include="Models\BugViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -271,6 +272,8 @@
     <Content Include="Views\Bug\List.cshtml" />
     <Content Include="Views\Bug\Details.cshtml" />
     <Content Include="Views\Bug\Report.cshtml" />
+    <Content Include="Views\Bug\Edit.cshtml" />
+    <Content Include="Views\Bug\AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

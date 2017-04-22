@@ -1,0 +1,38 @@
+﻿
+@model BugsTracker.Models.BugViewModel
+
+@{
+    ViewBag.Title = "Add Comment";
+}
+
+<div class="container">
+    <div class="well">
+        <h2>Add new comment</h2>     
+            @using (Html.BeginForm("AddComment", "Bug", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
+
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.AuthorId)
+                @Html.HiddenFor(m => m.State)
+                @Html.HiddenFor(m => m.Title)
+                @Html.HiddenFor(m => m.Description)
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Comments, new { @class = "control-label col-sm-4" })
+                    <div class="col-sm-4">
+                        @Html.TextAreaFor(m => m.Comments, new { @class = "form-control", @rows = "7" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        @Html.ActionLink("Cancel", "Index", "Bug", null, new { @class = "btn btn-default" })
+                        <input type="submit" value="AddComment" class="btn btn-primary" />
+                    </div>
+                </div>
+            } 
+    </div>
+</div>
+
+

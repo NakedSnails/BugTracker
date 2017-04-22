@@ -8,24 +8,31 @@
     <div class="row">
         @foreach (var bug in Model)
         {
-            <div class="col-sm-6">
-                <article>
-                    <header>
-                        <h2>
-                            @Html.ActionLink(@bug.Title, "Details", "Bug", new { @id = bug.Id }, null)
-                        </h2>
-                    </header>
-                    <p>
-                        @bug.Description
-                    </p>
-                    <footer class="pull-right">
-                        <small class="author">
-                            Reported by: @bug.Author.UserName
-                        </small>
-                    </footer>
-                </article>
+            <div class="col-md-4">
+                <h2>@bug.Title</h2>
+                <p>
+                    @bug.Description.Substring(0, bug.Description.Length / 3)...
+                </p>
+                <p>
+                    State: @bug.State
+                </p>
+                <p>
+                    Reported by: @bug.Author.UserName
+                </p>
+                <p>
+                   Time reported: @bug.DateAdded
+                </p> 
+                <p> <a class="btn btn-success" href="/Bug/Details/@bug.Id"> View Details</a></p>              
             </div>
         }
     </div>
 </div>
-<hr />
+<br/>
+    <p class="text-center">        
+        <a href="/Bug/List?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default" @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)>  Previous </a>            
+        <a href="/Bug/List?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default" @(!Model.Any() || Model.Count() < 5  ? "disabled" : string.Empty) >  Next </a>
+    </p>
+<footer class="text-center">
+    Page @ViewBag.CurrentPage
+</footer>
+
