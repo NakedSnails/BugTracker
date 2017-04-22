@@ -1,0 +1,33 @@
+﻿@model BugsTracker.Models.Bug
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <article>
+        <header>
+            <h2>
+               Title: @Model.Title
+            </h2>
+        </header>
+        <p>
+           Description: @Model.Description
+        </p>
+        <p>
+           State: @Model.State
+        </p>
+        <p>
+            Added: @Model.DateAdded
+        </p>
+        <small class="author">
+           Reported by: @Model.Author.UserName
+        </small>
+        <footer class="pull-right">
+            @Html.ActionLink("Edit", "Edit", "Bug", new { @id = Model.Id }, new { @class = "btn btn-success btn-xs" })            
+            @Html.ActionLink("Back", "Index", "Bug", null, new { @class = "btn btn-default btn-xs" })
+        </footer>
+    </article>
+</div>
+<hr />
+
+

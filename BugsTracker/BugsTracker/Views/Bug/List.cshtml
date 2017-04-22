@@ -1,0 +1,31 @@
+﻿@model List<BugsTracker.Models.Bug>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var bug in Model)
+        {
+            <div class="col-sm-6">
+                <article>
+                    <header>
+                        <h2>
+                            @Html.ActionLink(@bug.Title, "Details", "Bug", new { @id = bug.Id }, null)
+                        </h2>
+                    </header>
+                    <p>
+                        @bug.Description
+                    </p>
+                    <footer class="pull-right">
+                        <small class="author">
+                            Reported by: @bug.Author.UserName
+                        </small>
+                    </footer>
+                </article>
+            </div>
+        }
+    </div>
+</div>
+<hr />
