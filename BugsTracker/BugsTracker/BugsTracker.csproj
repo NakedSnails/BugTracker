@@ -199,6 +199,7 @@
     <Compile Include="Controllers\BugController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Data\State.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +208,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Bug.cs" />
+    <Compile Include="Models\BugSearchModel.cs" />
     <Compile Include="Models\BugsTrackerDbContext.cs" />
     <Compile Include="Models\BugViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -274,6 +276,11 @@
     <Content Include="Views\Bug\Report.cshtml" />
     <Content Include="Views\Bug\Edit.cshtml" />
     <Content Include="Views\Bug\AddComment.cshtml" />
+    <Content Include="Views\Search\New.cshtml" />
+    <Content Include="Views\Search\Open.cshtml" />
+    <Content Include="Views\Search\Fixed.cshtml" />
+    <Content Include="Views\Search\Closed.cshtml" />
+    <Content Include="Views\Search\MyBugs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

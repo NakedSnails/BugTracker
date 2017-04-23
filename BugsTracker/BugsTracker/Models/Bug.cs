@@ -22,7 +22,7 @@
 
         public DateTime DateAdded { get; set; }
        
-        public string Comments { get; set; }
+        public List<string> Comments { get; set; }
 
         //public DateTime DateModified { get; set; }
 

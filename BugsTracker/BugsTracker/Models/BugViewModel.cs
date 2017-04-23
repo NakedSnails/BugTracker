@@ -22,7 +22,8 @@
 
         //public DateTime DateModified { get; set; }   
 
-        public string Comments { get; set; }
+        [Display(Name = "Add new comment")]
+        public List<string> Comments { get; set; }
 
         public string AuthorId { get; set; }
     }

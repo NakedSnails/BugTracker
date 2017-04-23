@@ -8,6 +8,7 @@
     using System.Net;
     using System.Web;
     using System.Web.Mvc;
+    using Data;
 
     public class BugController : Controller
     {
@@ -61,12 +62,15 @@
         }
 
         //GET: Bug/Report
+        [Authorize]
+        [HttpGet]        
         public ActionResult Report()
         {
             return View();
         }
 
         //POST: Bug/Report
+        [Authorize]
         [HttpPost]
         public ActionResult Report(Bug bug)
         {
@@ -145,21 +149,7 @@
             }
 
             return View(model);
-        }
-
-        //Search 
-        //public ActionResult Search()
-        //{
-        //    using (var database = new BugsTrackerDbContext())
-        //    {
-        //        var bugs = database.Bugs
-        //            .Include(a => a.Author)
-        //            .ToList();
-        //
-        //        return View(bugs);
-        //    }
-        //}
-
+        }       
 
         //GET: Bug/AddComment        
         public ActionResult AddComment(int? id)
@@ -200,7 +190,7 @@
                     var bug = database.Bugs
                         .FirstOrDefault(b => b.Id == model.Id);
 
-                    bug.Comments = model.Comments;
+                    bug.Comments = model.Comments.ToList();
                     bug.Title = model.Title;
                     bug.Description = model.Description;
                     bug.State = model.State;
@@ -212,6 +202,17 @@
                 }
             }
             return View(model);
+        }
+
+        // GET: Search
+        public ActionResult Search()
+        {
+            var db = new BugsTrackerDbContext();
+            var newBugs = db.Bugs
+                .Where(a => a.State == State.New)
+                .ToList();
+
+            return View(newBugs);
         }
     }
 }

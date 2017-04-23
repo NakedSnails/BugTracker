@@ -21,7 +21,17 @@
         </p> 
         <p>
             Reported By: @Model.Author.UserName
-        </p>               
+        </p>         
+            @if(Model.Comments != null)
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    <p>
+                        Comment: @comment
+                    </p>
+                }
+            }
+                          
         <footer class="pull-right">
             @if (User.Identity.IsAuthenticated)
             {
