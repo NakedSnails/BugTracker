@@ -23,7 +23,7 @@
         //public DateTime DateModified { get; set; }   
 
         [Display(Name = "Add new comment")]
-        public List<string> Comments { get; set; }
+        public Comment Comment { get; set; }
 
         public string AuthorId { get; set; }
     }

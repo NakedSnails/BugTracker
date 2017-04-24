@@ -23,10 +23,10 @@
         {
             using (var database = new BugsTrackerDbContext())
             {
-                var pageSize = 6;
+                var pageSize = 12;
 
                 var bugs = database.Bugs
-                    .OrderByDescending(b => b.DateAdded)
+                    .OrderBy(b => b.Id)
                     .Skip((page - 1)* pageSize)
                     .Include(a => a.Author)
                     .ToList();
@@ -138,8 +138,7 @@
 
                     bug.Title = model.Title;
                     bug.Description = model.Description;
-                    bug.State = model.State;
-                    //bug.DateModified = model.DateModified;
+                    bug.State = model.State;                    
 
                     database.Entry(bug).State = EntityState.Modified;
                     database.SaveChanges();
@@ -151,7 +150,9 @@
             return View(model);
         }       
 
-        //GET: Bug/AddComment        
+        //GET: Bug/AddComment  
+        [HttpGet]
+        [Authorize]      
         public ActionResult AddComment(int? id)
         {
             if (id == null)
@@ -175,44 +176,37 @@
                 model.Title = bug.Title;
                 model.Description = bug.Description;
                 model.State = bug.State;
+                model.Comment = bug.Comment;
                 return View(model);
             }
         }
 
         //POST: Bug/AddComment
+        [Authorize]
         [HttpPost]
         public ActionResult AddComment(BugViewModel model)
         {
             if (ModelState.IsValid)
             {
-                using (var database = new BugsTrackerDbContext())
+                using (var db = new BugsTrackerDbContext())
                 {
-                    var bug = database.Bugs
+                    var bug = db.Bugs
                         .FirstOrDefault(b => b.Id == model.Id);
 
-                    bug.Comments = model.Comments.ToList();
+                    var authorId = this.User.Identity.Name;
+
                     bug.Title = model.Title;
                     bug.Description = model.Description;
                     bug.State = model.State;
+                    bug.Comments.Add(model.Comment);
 
-                    database.Entry(bug).State = EntityState.Modified;
-                    database.SaveChanges();
+                    db.Entry(bug).State = EntityState.Modified;
+                    db.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
             }
             return View(model);
-        }
-
-        // GET: Search
-        public ActionResult Search()
-        {
-            var db = new BugsTrackerDbContext();
-            var newBugs = db.Bugs
-                .Where(a => a.State == State.New)
-                .ToList();
-
-            return View(newBugs);
-        }
+        }   
     }
 }

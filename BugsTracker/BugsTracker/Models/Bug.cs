@@ -8,6 +8,11 @@
 
     public class Bug
     {
+        public Bug()
+        {
+            this.Comments = new HashSet<Comment>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -22,7 +27,10 @@
 
         public DateTime DateAdded { get; set; }
        
-        public List<string> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        //Foreign Key
+        public int CommentId { get; set; }
 
         //public DateTime DateModified { get; set; }
 
@@ -32,5 +40,6 @@
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
+        public Comment Comment { get; internal set; }
     }
 }

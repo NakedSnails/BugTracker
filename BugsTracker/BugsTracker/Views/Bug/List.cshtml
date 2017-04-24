@@ -4,34 +4,34 @@
     ViewBag.Title = "List";
 }
 
-<div class="container">
-    <div class="row">
+<table class="table table-striped table-hover table-bordered margin-top">
+    <thead>
+        <tr class="text-center">
+            <th>#</th>
+            <th>Time Reported</th>
+            <th>State</th>
+            <th>Title</th>
+            <th>Reported by</th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (var bug in Model)
         {
-            <div class="col-md-4">
-                <h2>@bug.Title</h2>
-                <p>
-                    @bug.Description.Substring(0, bug.Description.Length / 3)...
-                </p>
-                <p>
-                    State: @bug.State
-                </p>
-                <p>
-                    Reported by: @bug.Author.UserName
-                </p>
-                <p>
-                   Time reported: @bug.DateAdded
-                </p> 
-                <p> <a class="btn btn-success" href="/Bug/Details/@bug.Id"> View Details</a></p>              
-            </div>
-        }
-    </div>
-</div>
-<br/>
-    <p class="text-center">        
-        <a href="/Bug/List?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default" @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)>  Previous </a>            
-        <a href="/Bug/List?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default" @(!Model.Any() || Model.Count() < 5  ? "disabled" : string.Empty) >  Next </a>
-    </p>
+            <tr class="text-center">
+                <td> <a href="/Bug/Details/@bug.Id">@bug.Id</a></td>
+                <td>@bug.DateAdded</td>
+                <td>@bug.State</td>
+                <td><a href="/Bug/Details/@bug.Id">@bug.Title</a></td>
+                <td>@bug.Author.UserName</td>
+            </tr>
+        }        
+    </tbody>
+</table>
+<br />
+<p class="text-center">
+    <a href="/Bug/List?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default" @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)>  Previous </a>
+    <a href="/Bug/List?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default" @(!Model.Any() || Model.Count() < 5 ? "disabled" : string.Empty)>  Next </a>
+</p>
 <footer class="text-center">
     Page @ViewBag.CurrentPage
 </footer>

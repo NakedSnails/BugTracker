@@ -11,6 +11,7 @@
         }
 
         public virtual IDbSet<Bug> Bugs { get; set; }
+        public virtual IDbSet<Comment> Comments { get; set; }
 
         public static BugsTrackerDbContext Create()
         {
