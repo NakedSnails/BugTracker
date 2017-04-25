@@ -146,66 +146,6 @@
                     return RedirectToAction("Index");
                 }
             }
-
-            return View(model);
-        }       
-
-        //GET: Bug/AddComment  
-        [HttpGet]
-        [Authorize]      
-        public ActionResult AddComment(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            using (var database = new BugsTrackerDbContext())
-            {
-                var bug = database.Bugs
-                    .Where(b => b.Id == id)
-                    .First();
-
-                if (bug == null)
-                {
-                    return HttpNotFound();
-                }
-
-                var model = new BugViewModel();
-                model.Id = bug.Id;
-                model.Title = bug.Title;
-                model.Description = bug.Description;
-                model.State = bug.State;
-                model.Comment = bug.Comment;
-                return View(model);
-            }
-        }
-
-        //POST: Bug/AddComment
-        [Authorize]
-        [HttpPost]
-        public ActionResult AddComment(BugViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                using (var db = new BugsTrackerDbContext())
-                {
-                    var bug = db.Bugs
-                        .FirstOrDefault(b => b.Id == model.Id);
-
-                    var authorId = this.User.Identity.Name;
-
-                    bug.Title = model.Title;
-                    bug.Description = model.Description;
-                    bug.State = model.State;
-                    bug.Comments.Add(model.Comment);
-
-                    db.Entry(bug).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-            }
             return View(model);
         }   
     }

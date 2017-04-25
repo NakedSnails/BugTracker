@@ -10,8 +10,8 @@
     {
         public Bug()
         {
-            this.Comments = new HashSet<Comment>();
-        }
+            this.Comments = new HashSet<Comment>(); 
+        }      
 
         public int Id { get; set; }
 
@@ -25,12 +25,7 @@
         [Required]
         public State State { get; set; }
 
-        public DateTime DateAdded { get; set; }
-       
-        public virtual ICollection<Comment> Comments { get; set; }
-
-        //Foreign Key
-        public int CommentId { get; set; }
+        public DateTime DateAdded { get; set; } 
 
         //public DateTime DateModified { get; set; }
 
@@ -40,6 +35,8 @@
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
-        public Comment Comment { get; internal set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+        
     }
 }

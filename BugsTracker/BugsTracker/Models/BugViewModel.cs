@@ -20,10 +20,7 @@
         [Required]
         public State State { get; set; }
 
-        //public DateTime DateModified { get; set; }   
-
-        [Display(Name = "Add new comment")]
-        public Comment Comment { get; set; }
+        //public DateTime DateModified { get; set; }           
 
         public string AuthorId { get; set; }
     }

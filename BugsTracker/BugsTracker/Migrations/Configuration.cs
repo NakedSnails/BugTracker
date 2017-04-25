@@ -25,5 +25,13 @@ namespace BugsTracker.Migrations
             //    );
             //
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    //one-to-many 
+        //    modelBuilder.Entity<Bug>()
+        //                .HasMany<Comment>(s => s.Comments)                
+        //                .HasForeignKey(s => s.BugId);
+        //}
     }
 }
