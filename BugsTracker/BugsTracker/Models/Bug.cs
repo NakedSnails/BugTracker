@@ -29,7 +29,7 @@
 
         //public DateTime DateModified { get; set; }
 
-        //public string AttachmentURL { get; set; }
+        public string AttachmentURL { get; set; }
 
         [ForeignKey("Author")]
         public string AuthorId { get; set; }

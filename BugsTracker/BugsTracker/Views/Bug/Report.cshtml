@@ -6,7 +6,7 @@
 <div class="container">
     <div class="well">
         <h2>Report Bug</h2>
-        @using (Html.BeginForm("Report", "Bug", FormMethod.Post, new { @class = "form-horizontal" }))
+        @using (Html.BeginForm("Report", "Bug", FormMethod.Post, new {enctype="multipart/form-data", @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -26,10 +26,15 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.State, new { @class = "control-label col-sm-4" })
                 <div class="col-sm-4">
-                    @Html.EnumDropDownListFor(m => m.State)
+                    @Html.EnumDropDownListFor(m => m.State, new { @class = "form-control", @rows = "7" })
                 </div>
             </div>
-
+            <div class="form-group">
+                @Html.Label("attachment", "Add Attachment", new { @class = "control-label col-sm-4" })
+                <div class="col-sm-4">
+                    @Html.TextBox("attachment", null, new { type="file", @class = "form-control" })
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-4">
                     @Html.ActionLink("Cancel", "Index", "Bug", null, new { @class = "btn btn-default" })

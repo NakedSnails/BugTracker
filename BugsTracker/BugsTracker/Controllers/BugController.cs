@@ -72,7 +72,7 @@
         //POST: Bug/Report
         [Authorize]
         [HttpPost]
-        public ActionResult Report(Bug bug)
+        public ActionResult Report(Bug bug, HttpPostedFileBase attachment)
         {
             if(ModelState.IsValid)
             {
@@ -85,6 +85,19 @@
 
                     bug.AuthorId = authorId;
                     bug.DateAdded = DateTime.Now;
+                    if (attachment != null)
+                    {
+                        var types = new[] { "image/jpg", "image/jpeg", "image/png" };
+                        if (types.Contains(attachment.ContentType))
+                        {
+                            var attachmentPath = "/Data/Images/";
+                            var attachmentName = attachment.FileName;
+                            var uploadPath = attachmentPath + attachmentName;
+                            attachment.SaveAs(Server.MapPath(uploadPath));
+
+                            bug.AttachmentURL = uploadPath;
+                        }
+                    }
 
                     database.Bugs.Add(bug);
                     database.SaveChanges();

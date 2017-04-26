@@ -21,9 +21,13 @@
         </p> 
         <p>
             Reported By: @Model.Author.UserName
-        </p>         
-            
-                          
+        </p>
+
+        @if (Model.AttachmentURL != null)
+        {
+            <img src="@Model.AttachmentURL" alt="Attachment" />
+        }  
+                             
         <footer class="pull-right">
             @if (User.Identity.IsAuthenticated)
             {
