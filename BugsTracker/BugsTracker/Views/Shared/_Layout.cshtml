@@ -30,9 +30,14 @@
                             <li>@Html.ActionLink("Closed", "Closed", "Search")</li>
                             <li>@Html.ActionLink("Fixed", "Fixed", "Search")</li>                           
                         </ul>
-                    </li>  
-                </ul>                     
-                
+                    </li>                      
+                </ul>
+                @using (Html.BeginForm("SubstringSearch", "Search", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+                {                    
+                        @Html.TextBox("input")                    
+                    <button type="submit" class="btn btn-success">Submit</button>
+      
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

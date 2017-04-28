@@ -283,6 +283,7 @@
     <Content Include="Views\Search\Fixed.cshtml" />
     <Content Include="Views\Search\Closed.cshtml" />
     <Content Include="Views\Search\MyBugs.cshtml" />
+    <Content Include="Views\Search\SubstringSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

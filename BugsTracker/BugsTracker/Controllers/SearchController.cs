@@ -66,5 +66,22 @@
 
             return View(myBugs);
         }
+
+        // GET: Substring Search
+        [HttpGet]
+        public ActionResult SubstringSearch(string input)
+        {
+            var db = new BugsTrackerDbContext();
+            var foundedBugs = db.Bugs
+                .Where(b => b.Title.Contains(input))
+                .ToList();
+
+            if (foundedBugs.Count() == 0)
+            {
+                return RedirectToAction("Index", "Bug");
+            }
+
+            return View(foundedBugs);
+        }
     }
 }

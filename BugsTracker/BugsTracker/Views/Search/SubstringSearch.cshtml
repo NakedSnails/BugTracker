@@ -1,0 +1,30 @@
+﻿@model List<BugsTracker.Models.Bug>
+@{
+    ViewBag.Title = "Search Result";
+}
+
+<h2>Search Result</h2>
+<table class="table table-striped table-hover table-bordered margin-top">
+    <thead>
+        <tr class="text-center">
+            <th>#</th>
+            <th>Time Reported</th>
+            <th>State</th>
+            <th>Title</th>
+            <th>Reported by</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bug in Model)
+        {
+            <tr class="text-center">
+                <td> <a href="/Bug/Details/@bug.Id">@bug.Id</a></td>
+                <td>@bug.DateAdded</td>
+                <td>@bug.State</td>
+                <td><a href="/Bug/Details/@bug.Id">@bug.Title</a></td>
+                <td>@bug.Author.UserName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
