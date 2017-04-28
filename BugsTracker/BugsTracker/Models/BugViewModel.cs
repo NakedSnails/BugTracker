@@ -20,6 +20,8 @@
         [Required]
         public State State { get; set; }
 
+        public RadioButton RadioButton { get; set; }
+
         //public DateTime DateModified { get; set; }           
 
         public string AuthorId { get; set; }

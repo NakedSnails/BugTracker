@@ -133,6 +133,7 @@
                 model.Title = bug.Title;
                 model.Description = bug.Description;
                 model.State = bug.State;
+                model.RadioButton = bug.RadioButton;
 
                 return View(model);
             }
@@ -152,6 +153,7 @@
                     bug.Title = model.Title;
                     bug.Description = model.Description;
                     bug.State = model.State;                    
+                    bug.RadioButton = model.RadioButton;
 
                     database.Entry(bug).State = EntityState.Modified;
                     database.SaveChanges();
