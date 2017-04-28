@@ -11,7 +11,9 @@
         
         public string Description { get; set; }
         
-        public State State { get; set; }        
+        public State State { get; set; }
+
+        public RadioButton RadioButton { get; set; }
 
         public List<string> Comments { get; set; }
 
